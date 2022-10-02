@@ -6,10 +6,12 @@ import { Component } from '@angular/core';
 })
 export class Level2Component {
   public currentPlayerIndex = 1;
-  private currentWinnerIndex: number = 0;
+  protected currentWinnerIndex: number = 0;
+  protected playerNames!: string[];
   public boardContent!: number[][];
 
   constructor() {
+    this.playerNames = ['', 'Red', 'Blue'];
     this.restart();
   }
 
@@ -42,6 +44,10 @@ private playerIndexToClass(playerIndex: number): string{
   }
 
   return '';
+}
+
+public getPlayerName(col: number, row: number): string {
+  return this.playerNames[this.boardContent[row][col]];
 }
 
 /**
@@ -79,8 +85,11 @@ private playerIndexToClass(playerIndex: number): string{
     return -1;
   }
 
+  public getWinnerName(): string{
+    return this.playerNames[this.currentWinnerIndex];
+  }
+
   /**
-   * Gets the player (1 or 2) who has won the game
    * @returns Player (1 or 2) who has won, or 0 if there is no winner yet
    */
   public getWinnerIndex(): number {
