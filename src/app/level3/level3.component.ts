@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { TestBed } from '@angular/core/testing';
 import { Level2Component } from '../level2/level2.component';
 
 /**
@@ -16,6 +15,9 @@ export interface BoardCell {
    */
   class: string;
 }
+
+const NR_COLS = 7;
+const NR_ROWS = 6;
 
 @Component({
   templateUrl: './level3.component.html',
@@ -109,14 +111,14 @@ export class Level3Component extends Level2Component {
       indexToAdd = 0;
       for (let col = 0; col < this.boardContent.length - row; col++) {
         if (cellToCheck !== 0 &&
-          this.boardContent[row+indexToAdd][col] === cellToCheck) {
+          this.boardContent[row + indexToAdd][col] === cellToCheck) {
           count++;
           if (count === 4) {
             return cellToCheck;
           }
         }
         else {
-          cellToCheck = this.boardContent[row+indexToAdd][col];
+          cellToCheck = this.boardContent[row + indexToAdd][col];
           if (cellToCheck === 0) {
             count = 0;
           }
@@ -136,14 +138,14 @@ export class Level3Component extends Level2Component {
       indexToAdd = 0;
       for (let row = 0; row < this.boardContent[0].length - col; row++) {
         if (cellToCheck !== 0 &&
-          this.boardContent[row][col+indexToAdd] === cellToCheck) {
+          this.boardContent[row][col + indexToAdd] === cellToCheck) {
           count++;
           if (count === 4) {
             return cellToCheck;
           }
         }
         else {
-          cellToCheck = this.boardContent[row][col+indexToAdd];
+          cellToCheck = this.boardContent[row][col + indexToAdd];
           if (cellToCheck === 0) {
             count = 0;
           }
@@ -163,14 +165,14 @@ export class Level3Component extends Level2Component {
       indexToAdd = 0;
       for (let col = this.boardContent[row].length - 1; indexToAdd < this.boardContent.length - row; col--) {
         if (cellToCheck !== 0 &&
-          this.boardContent[row+indexToAdd][col] === cellToCheck) {
+          this.boardContent[row + indexToAdd][col] === cellToCheck) {
           count++;
           if (count === 4) {
             return cellToCheck;
           }
         }
         else {
-          cellToCheck = this.boardContent[row+indexToAdd][col];
+          cellToCheck = this.boardContent[row + indexToAdd][col];
           if (cellToCheck === 0) {
             count = 0;
           }
@@ -184,20 +186,20 @@ export class Level3Component extends Level2Component {
     }
 
     //diagonal right-top to left-bottom 2
-    for (let col = this.boardContent[0].length-2; col >= 3; col--) {
+    for (let col = this.boardContent[0].length - 2; col >= 3; col--) {
       count = 0;
       cellToCheck = this.boardContent[0][col];
       indexToAdd = 0;
       for (let row = 0; row <= col; row++) {
         if (cellToCheck !== 0 &&
-          this.boardContent[row][col-indexToAdd] === cellToCheck) {
+          this.boardContent[row][col - indexToAdd] === cellToCheck) {
           count++;
           if (count === 4) {
             return cellToCheck;
           }
         }
         else {
-          cellToCheck = this.boardContent[row][col-indexToAdd];
+          cellToCheck = this.boardContent[row][col - indexToAdd];
           if (cellToCheck === 0) {
             count = 0;
           }
@@ -225,17 +227,8 @@ export class Level3Component extends Level2Component {
       [0, 0, 0, 0, 0, 0, 0],
       [0, 0, 0, 0, 0, 0, 0],
     ];
+
     this.currentPlayerIndex = 1;
     this.currentWinnerIndex = 0;
-  }
-
-  public counter(count: number): number[] {
-    let result: number[] = [];
-
-    for (let i = 0; i < count; i++) {
-      result[i] = i;
-    }
-
-    return result;
   }
 }
