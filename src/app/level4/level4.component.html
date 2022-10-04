@@ -3,8 +3,8 @@
 <table class="connect-four-board">
   <tbody>
     <tr>
-      <td class="indicator" *ngFor="let cell of boardContent[0]; let colIx = index">
-        <app-column-indicator [columnIndex]="colIx" (drop)="drop($event)" [playerIndex]="currentPlayerIndex">
+      <td class="indicator" *ngFor="let cell of this.board.boardContent[0]; let colIx = index">
+        <app-column-indicator [columnIndex]="colIx" (drop)="this.board.drop($event)" [playerIndex]="this.board.currentPlayerIndex">
         </app-column-indicator>
       </td>
     </tr>
@@ -16,6 +16,6 @@
   </tbody>
 </table>
 
-<h2 [hidden]="winnerIndex === 0">The winner is {{getWinnerName()}}</h2>
+<h2 [hidden]="this.board.winnerIndex === 0">The winner is {{this.board.getWinnerName()}}</h2>
 
-<button (click)="restart()">Restart</button>
+<button (click)="this.board.restart()">Restart</button>
