@@ -21,8 +21,10 @@ import { BoardService } from './board.service';
   styleUrls: ['./level4.component.css'],
 })
 export class Level4Component{
+  protected playerNames!: string[];
+
   constructor(public board: BoardService) {
-    this.board.restart();
+    this.playerNames = ['', 'Red', 'Blue'];
   }
 
   /**
@@ -45,7 +47,7 @@ export class Level4Component{
   }
 
   public getPlayerName(col: number, row: number): string {
-    return this.board.getPlayerNames()[this.board.boardContent[row][col]];
+    return this.playerNames[this.board.boardContent[row][col]];
   }
 
   /**
@@ -62,5 +64,9 @@ export class Level4Component{
     }
 
     return '';
+  }
+
+  public getWinnerName(): string{
+    return this.playerNames[this.board.winnerIndex];
   }
 }

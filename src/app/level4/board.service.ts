@@ -9,11 +9,10 @@ import { Injectable } from '@angular/core';
 export class BoardService {
   public currentPlayerIndex = 1;
   protected currentWinnerIndex: number = 0;
-  protected playerNames!: string[];
   public boardContent!: number[][];
 
   constructor() {
-    this.playerNames = ['', 'Red', 'Blue'];
+    this.restart();
   }
 
   // override getWinnerIndex() method (level 2 solution only works for a 4x4 board)
@@ -182,10 +181,6 @@ export class BoardService {
     return 0;
   }
 
-  public getPlayerNames(): string[] {
-    return this.playerNames;
-  }
-
   /**
    * Drops a coin in the given row if there isn't a winner yet and
    * if the col isn't filled up already
@@ -237,9 +232,5 @@ export class BoardService {
     ];
     this.currentPlayerIndex = 1;
     this.currentWinnerIndex = 0;
-  }
-
-  public getWinnerName(): string{
-    return this.playerNames[this.winnerIndex];
   }
 }
